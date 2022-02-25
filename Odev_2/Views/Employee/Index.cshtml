@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Employee Page";
+}
+
+        @using (Html.BeginForm())
+    {
+        @Html.TextBox("UserName")
+        <br />
+        @Html.TextBox("Password")
+        <br />
+        <button>Gönder</button>
+    }

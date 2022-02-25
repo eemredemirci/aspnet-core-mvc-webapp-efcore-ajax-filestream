@@ -1,0 +1,5 @@
+﻿1. NORTHWND scaffold yaptım
+2. Employee/Index sayfasını HtmlHelper ile Form oluşturdum
+3. Kullanıcı adını (nancy.davolio) isim ve soyisim  olarak ayırmak için ToFirstName, ToLastName adında iki adet extension yazdım
+4. Kullanıcı isimlerinin baş harfini büyük yapan extension çaldım. Benim çözümüm vardı ama millet nasıl extension yazmış diye baktım
+5. Login için if kontrolünü employee sınıfının yeni örneğine giriş yapan kişiyi atayarak yaptım
