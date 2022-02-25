@@ -30,21 +30,54 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.Label(expression:item.Date.ToString(),labelText:item.Date.ToShortDateString(),htmlAttributes:new{ type="date"})
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.Label(expression:item.Date.ToString(),labelText:item.Date.ToShortDateString(),htmlAttributes:new{ type="date"})
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts
+{
+<script>
+        $(document).ready(function(){
+        var url = "/Home/Order";
+        getProducts(url);
+
+        $(".cat-filter").click(function(){
+            var orderID = $(this).attr("data-catID");
+            var url = "/Product/GetProducts/" + catID;
+            getProducts(url);
+        });
+
+        function getProducts(url){
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function(productData){
+                $.ajax({
+                    url:"/Product/GetListProduct",
+                    type: "POST",
+                    data: { "data" : productData },
+                    success: function(partialResult){
+                        $("#product-table tbody").html(partialResult);
+                    }
+                });
+            }
+        });
+    }
+</script>
+}
