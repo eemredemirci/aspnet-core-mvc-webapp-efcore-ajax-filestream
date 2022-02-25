@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date.Date)
+                @Html.Label(expression:item.Date.ToString(),labelText:item.Date.ToShortDateString(),htmlAttributes:new{ type="date"})
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

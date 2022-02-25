@@ -67,27 +67,28 @@ namespace Odev2.Controllers
             if (employeeLoggin != null)
             {
                 List<OrdersViewModel> ordersViewModels;
-                
-                    var data = context.Orders
-                    .Where(a => a.EmployeeId== employeeLoggin.EmployeeId)
-                    .Include(a => a.Customer)
-                    .Include(a => a.OrderDetails)
-                    .Select(a =>  new OrdersViewModel() { 
-                        OrderId = a.OrderId, 
-                        Date = a.OrderDate.Value.Date, 
-                        CompanyName=a.Customer.CompanyName, 
-                        Price=a.OrderDetails.Sum(a=>a.UnitPrice)
-                    })
-                    .ToList();
+
+                var data = context.Orders
+                .Where(a => a.EmployeeId == employeeLoggin.EmployeeId)
+                .Include(a => a.Customer)
+                .Include(a => a.OrderDetails)
+                .Select(a => new OrdersViewModel()
+                {
+                    OrderId = a.OrderId,
+                    Date = (DateTime)a.OrderDate,
+                    CompanyName = a.Customer.CompanyName,
+                    Price = a.OrderDetails.Sum(a => a.UnitPrice)
+                })
+                .ToList();
 
                 ordersViewModels = data;
 
                 // EF Core Query 2. Seçenek
 
-                  //List <Order> orders = context.Orders.Where(a => a.EmployeeId == employeeLoggin.EmployeeId)
-                  //  .Include(a => a.Customer)
-                  //  .Include(a => a.OrderDetails)
-                  //  .ToList();
+                //List <Order> orders = context.Orders.Where(a => a.EmployeeId == employeeLoggin.EmployeeId)
+                //  .Include(a => a.Customer)
+                //  .Include(a => a.OrderDetails)
+                //  .ToList();
 
                 //foreach (var order in orders)
                 //{
@@ -125,7 +126,7 @@ namespace Odev2.Controllers
                 .Where(a => a.EmployeeId == employeeLoggin.EmployeeId)
                 .SingleOrDefault();
 
-            return View("ProfileList",employee);
+            return View("ProfileList", employee);
         }
 
         [HttpPost]
@@ -142,6 +143,11 @@ namespace Odev2.Controllers
             context.SaveChanges();
 
             return View("ProfileList", employeeGet);
+        }
+
+        public IActionResult Download()
+        {
+            return View();
         }
     }
 }
