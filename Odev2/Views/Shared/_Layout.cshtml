@@ -28,8 +28,12 @@
                 </div>
                 <div>
                     <ul class="navbar-nav">
-                        @* partial view *@
-                        </ul>
+                        @*@{
+                            await Html.RenderPartialAsync("_LoginPartial",(List<Employee>)ViewBag.User);
+                            }*@
+
+                        <partial name="_LoginPartial" model="ViewBag.User" />
+                    </ul>
                 </div>
             </div>
         </nav>

@@ -22,7 +22,7 @@ namespace Odev2.Controllers
         public IActionResult Index()
         {
             LoginDTO model = new();
-
+            ViewBag.User = employeeLoggin;
             return View(model);
         }
 
@@ -57,8 +57,11 @@ namespace Odev2.Controllers
 
         public IActionResult Logout()
         {
+            employeeLoggin = null;
+            ViewBag.User = employeeLoggin;
             return RedirectToAction("Index");
         }
+
         public IActionResult Order()
         {
             if (employeeLoggin != null)
@@ -108,10 +111,14 @@ namespace Odev2.Controllers
                 }
 
                 ViewBag.Company = items;
-
+                ViewBag.User = employeeLoggin;
                 return View(ordersViewModels);
             }
             return Unauthorized("Kullanıcı giriş yapmalı!");
+        }
+        public IActionResult Profile()
+        {
+            return View();
         }
     }
 }
