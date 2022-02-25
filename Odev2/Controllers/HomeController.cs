@@ -119,11 +119,29 @@ namespace Odev2.Controllers
 
         public IActionResult Profile()
         {
+            ViewBag.User = employeeLoggin;
+
             Employee employee = context.Employees
                 .Where(a => a.EmployeeId == employeeLoggin.EmployeeId)
                 .SingleOrDefault();
 
             return View("ProfileList",employee);
+        }
+
+        [HttpPost]
+        public IActionResult Profile(Employee employee)
+        {
+            ViewBag.User = employeeLoggin;
+
+            var employeeGet = context.Employees
+                .Where(a => a.EmployeeId == employee.EmployeeId)
+                .SingleOrDefault();
+            employeeGet.Address = employee.Address;
+            employeeGet.HomePhone = employee.HomePhone;
+            context.Employees.Update(employeeGet);
+            context.SaveChanges();
+
+            return View("ProfileList", employeeGet);
         }
     }
 }
