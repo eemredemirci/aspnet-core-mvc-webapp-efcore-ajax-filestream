@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Odev2.Models.Employee>
+﻿@model Odev2.Models.Employee
 
 @{
     ViewData["Title"] = "Profile";
@@ -13,106 +13,45 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayName(@Model.LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayName(@Model.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayName(@Model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TitleOfCourtesy)
+                @Html.DisplayName(@Model.TitleOfCourtesy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomePhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Extension)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoPath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReportsToNavigation)
+                @Html.DisplayName(@Model.BirthDate.Value.Date.ToString())
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.Display(@Model.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.Display(@Model.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.Display(@Model.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TitleOfCourtesy)
+                @Html.Display(@Model.TitleOfCourtesy)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
+                @Html.TextBoxFor(a=>a.BirthDate, htmlAttributes:new{ type="date"})
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HireDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomePhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Extension)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReportsToNavigation.FirstName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@Model.EmployeeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@Model.EmployeeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@Model.EmployeeId">Delete</a>
             </td>
         </tr>
-}
     </tbody>
 </table>

@@ -116,9 +116,14 @@ namespace Odev2.Controllers
             }
             return Unauthorized("Kullanıcı giriş yapmalı!");
         }
+
         public IActionResult Profile()
         {
-            return View();
+            Employee employee = context.Employees
+                .Where(a => a.EmployeeId == employeeLoggin.EmployeeId)
+                .SingleOrDefault();
+
+            return View("ProfileList",employee);
         }
     }
 }

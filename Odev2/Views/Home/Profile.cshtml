@@ -4,7 +4,7 @@
     ViewData["Title"] = "ProfileUpdate";
 }
 
-<h1>ProfileUpdate</h1>
+<h1>Profile</h1>
 
 <h4>Employee</h4>
 <hr />
@@ -46,7 +46,7 @@
                 @Html.Display(@Model.TitleOfCourtesy)
             </td>
             <td>
-                @Html.TextBoxFor(a=>a.BirthDate.ToString(), htmlAttributes:new{ type="date"})
+                @Html.TextBoxFor(a=>a.BirthDate, htmlAttributes:new{ type="date"})
             </td>
             </tr>
     </tbody>
